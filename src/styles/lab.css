@@ -1,0 +1,545 @@
+/* ============================================================
+   Retrieval lab
+   ============================================================ */
+.lab-wrap {
+  position: relative;
+}
+
+.lab-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(24px, 5vw, 70px);
+  align-items: end;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.lab-note {
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+.lab-note strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.lab-panel {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(170deg, color-mix(in srgb, var(--bg-3) 92%, transparent), var(--bg-2));
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.lab-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(600px 240px at 82% -10%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+}
+
+.lab-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+}
+
+.lab-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.lab-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.lab-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.lab-dots i:first-child {
+  background: color-mix(in srgb, var(--danger) 70%, transparent);
+}
+.lab-dots i:nth-child(2) {
+  background: color-mix(in srgb, var(--vision) 70%, transparent);
+}
+.lab-dots i:nth-child(3) {
+  background: color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.lab-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lab-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+
+.lab-side {
+  border-right: 1px solid var(--line);
+  padding: 20px 18px;
+  background: color-mix(in srgb, var(--bg) 24%, transparent);
+}
+
+.lab-side-title {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 14px;
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 10px 0;
+  color: var(--ink-3);
+  transition: color 0.35s var(--ease), opacity 0.35s var(--ease);
+  opacity: 0.6;
+}
+
+.stage + .stage {
+  border-top: 1px solid var(--line);
+}
+
+.stage.is-done {
+  opacity: 1;
+  color: var(--ink-2);
+}
+
+.stage.is-active {
+  opacity: 1;
+  color: var(--ink);
+}
+
+.stage-mark {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 5px;
+  border: 1px solid var(--line-strong);
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.stage.is-active .stage-mark {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.stage.is-done .stage-mark {
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  color: var(--accent);
+}
+
+.stage-name {
+  font-size: 12px;
+  letter-spacing: -0.01em;
+}
+
+.stage-sub {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 3px;
+}
+
+.stage.is-active .stage-sub {
+  color: var(--accent);
+}
+
+.lab-stats {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 8px;
+}
+
+.lab-stat {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.lab-stat b {
+  color: var(--ink-2);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.lab-main {
+  padding: clamp(18px, 2.6vw, 26px);
+  min-width: 0;
+}
+
+.lab-prompt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 6px 6px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.lab-prompt:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.lab-prompt > svg {
+  color: var(--ink-3);
+  flex-shrink: 0;
+}
+
+.lab-input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+}
+
+.lab-input::placeholder {
+  color: var(--ink-3);
+}
+
+.lab-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.lab-submit:hover {
+  transform: translateY(-1px);
+}
+
+.lab-submit:disabled {
+  opacity: 0.55;
+  transform: none;
+  cursor: default;
+}
+
+.lab-samples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.sample {
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease);
+  text-align: left;
+}
+
+.sample:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: var(--accent-soft);
+}
+
+.lab-results {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 120px;
+}
+
+.lab-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 26px 20px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 14px;
+  color: var(--ink-3);
+  font-size: 12.5px;
+  line-height: 1.65;
+  text-align: center;
+  align-items: center;
+}
+
+.lab-placeholder svg {
+  color: var(--ink-3);
+  opacity: 0.7;
+}
+
+.result {
+  position: relative;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.result:hover {
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--line));
+  background: var(--panel-hover);
+}
+
+.result-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.result-title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  min-width: 0;
+}
+
+.result-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.score-track {
+  width: 52px;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.score-track i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+.score-val {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  min-width: 30px;
+  text-align: right;
+}
+
+.result-excerpt {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.result-excerpt mark {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.result-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.result-meta i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.lab-empty {
+  padding: 24px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 12.5px;
+}
+
+.lab-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.lab-foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.lab-foot svg {
+  color: var(--accent);
+}
+
+@media (max-width: 1080px) {
+  .lab-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 860px) {
+  .lab-body {
+    grid-template-columns: 1fr;
+  }
+  .lab-side {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+  }
+  .lab-side-title {
+    grid-column: 1 / -1;
+  }
+  .stage:nth-child(3) {
+    border-top: 1px solid var(--line);
+  }
+  .lab-stats {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .lab-stat {
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .lab-input {
+    font-size: 12.5px;
+  }
+  .lab-submit span {
+    display: none;
+  }
+  .lab-submit {
+    padding: 0 12px;
+  }
+  .lab-side {
+    grid-template-columns: 1fr;
+  }
+  .lab-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .result-head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+.score-track i {
+  animation: scoreGrow 0.9s var(--ease) both;
+}
+
+@keyframes scoreGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(var(--s, 1));
+  }
+}
+
+.lab-result-enter {
+  animation: resultIn 0.5s var(--ease) backwards;
+}
+
+@keyframes resultIn {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}

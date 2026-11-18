@@ -278,7 +278,7 @@ export const experiments = [
     name: 'JARVIS',
     note: 'Voice-first OS assistant with a local LLM brain and skills for files, apps, calls and media. Work in progress.',
     tags: ['Python', 'FastAPI', 'Ollama', 'Edge TTS'],
-    link: 'https://github.com/Monish03905/JARVIS',
+    link: 'https://github.com/Monish03905/jarvis-voice-assistant',
   },
   {
     name: 'ResQ',

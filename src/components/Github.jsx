@@ -19,7 +19,8 @@ const CURATED_DESCRIPTIONS = {
     'LLM gateway with a three-tier cost router, HMAC-signed receipts and a six-page ops cockpit.',
   ghostlight_studio:
     'Autonomous faceless film studio — writes, narrates, scores, renders and gates its own shorts.',
-  jarvis: 'Voice-first OS assistant with a local LLM brain and OS skills. Work in progress.',
+  'jarvis-voice-assistant':
+    'Voice-first OS assistant with a local LLM brain and OS skills. Work in progress.',
   'aure-rag': 'Offline-first multilingual RAG — 9,754 chunks indexed in FAISS, answers grounded in your own docs.',
   'aura-rag': 'Offline-first multilingual RAG — 9,754 chunks indexed in FAISS, answers grounded in your own docs.',
   'devision-a.i.-software-': 'Autonomous repair loop — see, understand, fix, test, verify, with auditable diffs and build metrics.',
@@ -31,6 +32,7 @@ const CURATED_DESCRIPTIONS = {
   'task-wispr-flow': 'Voice-first task flow — speak a request and get structured issues out of it.',
   'hand-tracking-ar-ui': 'AR HUD with radial gauges and pinch controls rendered on your hand in real time.',
   'portfolio-monish-main': 'This portfolio — React, Vite, and a retrieval lab that runs entirely in the browser.',
+  'monish-portfolio': 'This portfolio — React, Vite, and a retrieval lab that runs entirely in the browser.',
   portfolio: 'This portfolio — React, Vite, and a retrieval lab that runs entirely in the browser.',
 };
 
